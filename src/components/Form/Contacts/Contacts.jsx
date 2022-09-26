@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import s from './Contacts.module.css';
 
-function Contacts({ contacts, deleteContact }) {
+const Contacts = ({ contacts, deleteContact }) => {
   if (!contacts.length) {
     return (
       <div className={s.wrap}>
@@ -34,7 +34,7 @@ function Contacts({ contacts, deleteContact }) {
       </ul>
     );
   }
-}
+};
 
 export default Contacts;
 

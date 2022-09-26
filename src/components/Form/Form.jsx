@@ -23,7 +23,9 @@ class Form extends Component {
   componentDidMount() {
     const contactsFromStorage = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contactsFromStorage);
-    this.setState({ contacts: parsedContacts });
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
   }
 
   findContact = e => {
@@ -77,7 +79,6 @@ class Form extends Component {
   };
 
   render() {
-    console.log('render :>> ', 'render');
     const { findContact, deleteContact, submitForm } = this;
     const contacts = this.filterContact();
     return (
