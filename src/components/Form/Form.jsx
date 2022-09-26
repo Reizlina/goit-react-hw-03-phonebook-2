@@ -14,6 +14,18 @@ class Form extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const contactsFromStorage = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contactsFromStorage);
+    this.setState({ contacts: parsedContacts });
+  }
+
   findContact = e => {
     this.setState(() => {
       return { filter: e.target.value };
@@ -65,6 +77,7 @@ class Form extends Component {
   };
 
   render() {
+    console.log('render :>> ', 'render');
     const { findContact, deleteContact, submitForm } = this;
     const contacts = this.filterContact();
     return (
